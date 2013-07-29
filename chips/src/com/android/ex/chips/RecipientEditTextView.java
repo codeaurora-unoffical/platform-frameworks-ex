@@ -866,6 +866,9 @@ public class RecipientEditTextView extends MultiAutoCompleteTextView implements
             String destText = createAddressText(entry);
             // Always leave a blank space at the end of a chip.
             int textLength = destText.length() - 1;
+            //Avoid IndexOutOfBoundsException
+            if (textLength < 0)
+            textLength = 0;
             SpannableString chipText = new SpannableString(destText);
             int end = getSelectionEnd();
             int start = mTokenizer != null ? mTokenizer.findTokenStart(getText(), end) : 0;
